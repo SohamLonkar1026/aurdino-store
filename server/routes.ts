@@ -5,6 +5,11 @@ import { insertOrderSchema, insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint for Render
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok", message: "ArduinoMart API is running" });
+  });
+
   // Orders API
   app.post("/api/orders", async (req, res) => {
     try {

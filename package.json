@@ -5,11 +5,10 @@
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development tsx server/index.ts",
-    "start": "cross-env NODE_ENV=production node dist/index.js",
+    "start": "cross-env NODE_ENV=production tsx server/index.ts",
     "build": "tsc && vite build",
     "build:client": "vite build",
     "build:server": "tsc",
-    "vercel-build": "npm run build",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
