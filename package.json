@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development tsx server/index.ts",
     "start": "cross-env NODE_ENV=production tsx server/index.ts",
-    "build": "npm run build:client",
-    "build:client": "vite build",
-    "build:server": "tsc --noEmit",
+    "build": "npx vite build",
+    "build:client": "npx vite build",
+    "build:server": "npx tsc --noEmit",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"
