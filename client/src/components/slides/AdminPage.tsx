@@ -283,7 +283,7 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
                             <div>
                               <h4 className="font-semibold">{order.fullName}</h4>
                               <p className="text-sm text-arduino-blue-300">{order.mobile}</p>
-                              <p className="text-xs text-arduino-blue-400 font-mono">{order.orderId}</p>
+                              <p className="text-xs text-arduino-blue-400 font-mono break-all">{order.orderId}</p>
                             </div>
                             <div className="text-right">
                               <p className="font-bold text-lg">₹{order.total}</p>
@@ -337,22 +337,54 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
                 </div>
               ) : (
                 <div className="space-y-4">
-                  {contacts.map((contact: Contact) => (
-                    <div key={contact.id} className="bg-arduino-blue-700/30 rounded-lg p-4 border border-arduino-blue-600/30">
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                          <h4 className="font-semibold">{contact.name}</h4>
-                          <p className="text-sm text-arduino-blue-300">{contact.email}</p>
+                  {/* Desktop Table View */}
+                  <div className="hidden lg:block overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-arduino-blue-700">
+                          <th className="text-left py-3 px-4">Sender</th>
+                          <th className="text-left py-3 px-4">Message</th>
+                          <th className="text-left py-3 px-4">Received At</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {contacts.map((contact: Contact) => (
+                          <tr key={contact.id} className="border-b border-arduino-blue-800">
+                            <td className="py-3 px-4">
+                              <div className="font-medium">{contact.name}</div>
+                              <div className="text-sm text-arduino-blue-300">{contact.email}</div>
+                            </td>
+                            <td className="py-3 px-4 text-sm max-w-md">
+                              <p className="whitespace-pre-wrap">{contact.message}</p>
+                            </td>
+                            <td className="py-3 px-4 text-sm">
+                              {new Date(contact.createdAt).toLocaleString()}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+
+                  {/* Mobile Card View */}
+                  <div className="lg:hidden space-y-4">
+                    {contacts.map((contact: Contact) => (
+                      <div key={contact.id} className="bg-arduino-blue-700/30 rounded-lg p-4 border border-arduino-blue-600/30">
+                        <div className="flex justify-between items-start mb-2">
+                          <div>
+                            <h4 className="font-semibold">{contact.name}</h4>
+                            <p className="text-sm text-arduino-blue-300 break-all">{contact.email}</p>
+                          </div>
+                          <span className="text-xs text-arduino-blue-400 text-right">
+                            {new Date(contact.createdAt).toLocaleDateString()} {new Date(contact.createdAt).toLocaleTimeString()}
+                          </span>
                         </div>
-                        <span className="text-xs text-arduino-blue-400">
-                          {new Date(contact.createdAt).toLocaleDateString()} {new Date(contact.createdAt).toLocaleTimeString()}
-                        </span>
+                        <div className="bg-arduino-blue-800/50 rounded p-3 mt-3">
+                          <p className="text-sm whitespace-pre-wrap">{contact.message}</p>
+                        </div>
                       </div>
-                      <div className="bg-arduino-blue-800/50 rounded p-3 mt-3">
-                        <p className="text-sm">{contact.message}</p>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               )}
             </TabsContent>

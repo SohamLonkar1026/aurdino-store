@@ -10,7 +10,7 @@ export default function AboutPage({ setCurrentSlide }: AboutPageProps) {
     <div className="min-h-screen bg-arduino-blue-950 pt-20 pb-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">About Arduino & ArduinoMart</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6">About Arduino & ArduinoMart</h1>
           <p className="text-xl text-arduino-blue-200 max-w-3xl mx-auto">
             Arduino is an open-source electronics platform that makes it easy to create interactive projects. 
             Our VIT-based startup is passionate about making Arduino accessible to everyone.
@@ -48,7 +48,7 @@ export default function AboutPage({ setCurrentSlide }: AboutPageProps) {
 
         <div>
           <h2 className="text-3xl font-bold text-center mb-12">Components in Our Starter Kit (43 components)</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {products.map((product) => (
               <div key={product.id} className="bg-arduino-blue-800/30 backdrop-blur-sm rounded-lg p-4 border border-arduino-blue-700/30 text-center">
                 <div className="text-2xl mb-2">{product.icon}</div>

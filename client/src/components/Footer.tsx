@@ -32,7 +32,7 @@ export default function Footer({ setCurrentSlide }: FooterProps) {
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
-            <ul className="grid grid-cols-1 gap-2">
+            <ul className="space-y-2">
               <li>
                 <a 
                   href="#"

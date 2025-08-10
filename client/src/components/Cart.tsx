@@ -22,7 +22,7 @@ export default function Cart({ isOpen, onClose, onCheckout }: CartProps) {
       )}
       
       {/* Cart Sidebar */}
-      <div className={`fixed top-0 right-0 h-full w-full sm:w-96 bg-arduino-blue-900 z-50 transform transition-transform duration-300 shadow-2xl ${
+      <div className={`fixed top-0 right-0 h-full w-full max-w-sm sm:w-96 bg-arduino-blue-900 z-50 transform transition-transform duration-300 shadow-2xl ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         <div className="p-6 border-b border-arduino-blue-800">

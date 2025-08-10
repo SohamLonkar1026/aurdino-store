@@ -161,9 +161,9 @@ export default function ProjectDetailPage({ setCurrentSlide, projectId }: Projec
           </button>
           
           <div className="flex items-center gap-4 mb-6">
-            <div className="text-4xl sm:text-6xl">{project.icon}</div>
+            <div className="text-4xl sm:text-5xl lg:text-6xl">{project.icon}</div>
             <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{project.title}</h1>
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-2">{project.title}</h1>
               <p className="text-arduino-blue-300 text-lg">{project.description}</p>
             </div>
           </div>
@@ -240,7 +240,7 @@ export default function ProjectDetailPage({ setCurrentSlide, projectId }: Projec
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.3 }}
-              className="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30 sticky top-24"
+              className="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30 lg:sticky lg:top-24"
             >
               <h3 className="text-xl font-bold text-white mb-4">Project Details</h3>
               
@@ -282,7 +282,7 @@ export default function ProjectDetailPage({ setCurrentSlide, projectId }: Projec
               <div className="space-y-3 mt-6">
                 <button
                   onClick={handleAddAllComponents}
-                  className="w-full bg-gradient-to-r from-arduino-blue-500 to-arduino-blue-600 text-white py-3 rounded-lg font-medium hover:from-arduino-blue-600 hover:to-arduino-blue-700 transition-all flex items-center justify-center gap-2"
+                  className="w-full bg-gradient-to-r from-arduino-blue-500 to-arduino-blue-600 text-white py-3 rounded-lg font-medium hover:from-arduino-blue-600 hover:to-arduino-blue-700 transition-all flex items-center justify-center gap-2 border border-white"
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Add Complete Kit
@@ -290,7 +290,7 @@ export default function ProjectDetailPage({ setCurrentSlide, projectId }: Projec
                 
                 <button
                   onClick={handleGoToProducts}
-                  className="w-full bg-arduino-blue-700/50 text-arduino-blue-300 py-3 rounded-lg font-medium hover:bg-arduino-blue-700/70 transition-all border border-arduino-blue-600/30 flex items-center justify-center gap-2"
+                  className="w-full bg-arduino-blue-700/50 text-arduino-blue-300 py-3 rounded-lg font-medium hover:bg-arduino-blue-700/70 transition-all border border-white flex items-center justify-center gap-2"
                 >
                   <Package className="w-5 h-5" />
                   Shop Individual Components

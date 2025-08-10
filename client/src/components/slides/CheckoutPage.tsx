@@ -116,8 +116,8 @@ export default function CheckoutPage({ setCurrentSlide }: CheckoutPageProps) {
           <p className="text-arduino-blue-200">Complete your order by filling out the details below</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div className="order-2 md:order-1">
             <h2 className="text-2xl font-semibold mb-6">Order Details</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -192,7 +192,7 @@ export default function CheckoutPage({ setCurrentSlide }: CheckoutPageProps) {
             </form>
           </div>
 
-          <div>
+          <div className="order-1 md:order-2">
             <h2 className="text-2xl font-semibold mb-6">Order Summary</h2>
             <div className="bg-arduino-blue-800/50 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30">
               {state.items.length === 0 ? (

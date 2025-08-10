@@ -56,7 +56,7 @@ export default function ContactPage({ setCurrentSlide }: ContactPageProps) {
     <div className="min-h-screen bg-arduino-blue-950 pt-20 pb-10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
           <p className="text-xl text-arduino-blue-200">Have questions about our products or need help with your Arduino project?</p>
         </div>
 

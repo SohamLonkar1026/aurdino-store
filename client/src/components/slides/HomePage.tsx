@@ -115,7 +115,7 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
   ];
 
   return (
-    <div className="min-h-screen bg-arduino-gradient relative overflow-hidden pt-20">
+    <div className="bg-arduino-gradient relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div 
@@ -127,14 +127,14 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
         />
       </div>
       
-      <div className="relative z-10">
+      <div className="relative z-10 pt-20">
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           <div className="text-center mb-12 sm:mb-16">
-            <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white to-arduino-blue-200 bg-clip-text text-transparent">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white to-arduino-blue-200 bg-clip-text text-transparent">
               Build Amazing Projects
             </h1>
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-3 sm:mb-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
               with Arduino
             </h2>
             <p className="text-lg sm:text-xl md:text-2xl text-arduino-blue-200 mb-2">
@@ -191,7 +191,7 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
           {/* Why Choose Us Section */}
           <div className="max-w-6xl mx-auto mb-12 sm:mb-20">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 sm:mb-12 px-4">Why Buy From Us Instead of Big Dealers?</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
               {whyChooseUsFeatures.map((feature, index) => (
                 <div key={index} className="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-arduino-blue-700/30 text-center hover:bg-arduino-blue-800/50 transition-all">
                   <div className="text-2xl sm:text-3xl mb-3 sm:mb-4">{feature.icon}</div>

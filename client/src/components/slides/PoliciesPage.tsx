@@ -150,9 +150,9 @@ export default function PoliciesPage({ setCurrentSlide, activePolicy = "shipping
                     : 'bg-arduino-blue-700/30 text-arduino-blue-300 hover:bg-arduino-blue-700/50 hover:text-white'
                 }`}
               >
-                <div className="flex items-center gap-2">
+                <div className="flex flex-col sm:flex-row items-center gap-2">
                   <span className="text-lg">{policyData.icon}</span>
-                  <span className="hidden sm:block">{policyData.title}</span>
+                  <span className="block text-xs mt-1 sm:text-sm sm:mt-0">{policyData.title}</span>
                 </div>
               </button>
             ))}
