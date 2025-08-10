@@ -33,7 +33,7 @@ export default function ArduinoMart() {
   ];
 
   return (
-    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden min-h-screen">
+    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden">
       <Navigation 
         currentSlide={currentSlide} 
         setCurrentSlide={setCurrentSlide}
