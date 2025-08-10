@@ -33,7 +33,7 @@ export default function ArduinoMart() {
   ];
 
   return (
-    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden">
+    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden min-h-screen flex flex-col">
       <Navigation 
         currentSlide={currentSlide} 
         setCurrentSlide={setCurrentSlide}
@@ -46,7 +46,7 @@ export default function ArduinoMart() {
         onCheckout={() => setCurrentSlide(5)}
       />
       
-      <div className="slide-container">
+      <div className="slide-container flex-grow">
         {slides.map((slide, index) => {
           const SlideComponent = slide.component;
           return (
