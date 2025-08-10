@@ -115,7 +115,7 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
   ];
 
   return (
-    <div className="min-h-screen bg-arduino-gradient relative overflow-hidden pt-20 pb-10">
+    <div className="bg-arduino-gradient relative overflow-hidden pt-20">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div 
