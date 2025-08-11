@@ -115,7 +115,7 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
   ];
 
   return (
-    <div className="bg-arduino-gradient relative overflow-hidden pt-20">
+    <div className="min-h-screen flex flex-col bg-arduino-gradient relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div 
@@ -127,9 +127,9 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
         />
       </div>
       
-      <div className="relative z-10">
+      <div className="relative z-10 flex-1 flex flex-col pt-20">
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1">
           <div className="text-center mb-12 sm:mb-16">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white to-arduino-blue-200 bg-clip-text text-transparent">
               Build Amazing Projects
