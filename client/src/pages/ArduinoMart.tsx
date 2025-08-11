@@ -34,7 +34,7 @@ export default function ArduinoMart() {
   ];
 
   return (
-    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden min-h-screen min-h-[100dvh] flex flex-col">
+    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden flex flex-col">
       <Navigation 
         currentSlide={currentSlide} 
         setCurrentSlide={setCurrentSlide}
