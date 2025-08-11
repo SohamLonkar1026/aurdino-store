@@ -148,7 +148,7 @@ export default function ProjectDetailPage({ setCurrentSlide, projectId }: Projec
   };
 
   return (
-    <div className="min-h-screen bg-arduino-gradient pt-20 pb-10">
+    <div className="bg-arduino-gradient pt-20 pb-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">

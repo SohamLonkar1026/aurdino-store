@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Footer from "../Footer";
+
 
 interface AdminPageProps {
   setCurrentSlide: (slide: number) => void;
@@ -104,9 +104,10 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
 
   if (!isLoggedIn) {
     return (
-      <div className="min-h-screen bg-arduino-blue-950 pt-20 pb-10">
-        <div className="max-w-md mx-auto px-4">
-          <div className="bg-arduino-blue-800/50 backdrop-blur-sm rounded-xl p-8 border border-arduino-blue-700/30">
+      <div className="bg-arduino-blue-950">
+        <section>
+          <div className="max-w-md mx-auto px-4">
+            <div className="bg-arduino-blue-800/50 backdrop-blur-sm rounded-xl p-8 border border-arduino-blue-700/30">
             <h1 className="text-3xl font-bold text-center mb-8">Admin Access</h1>
             <form onSubmit={handleLogin}>
               <div className="mb-6">
@@ -127,15 +128,17 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
                 Login
               </Button>
             </form>
+            </div>
           </div>
-        </div>
+        </section>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-arduino-blue-950 pt-20 pb-10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-arduino-blue-950">
+      <section>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 px-4">Admin Panel</h1>
           <p className="text-arduino-blue-200 px-4">Manage orders and track deliveries</p>
@@ -390,9 +393,9 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
             </TabsContent>
           </Tabs>
         </div>
-      </div>
+        </div>
+      </section>
       
-      <Footer setCurrentSlide={setCurrentSlide} />
     </div>
   );
 }

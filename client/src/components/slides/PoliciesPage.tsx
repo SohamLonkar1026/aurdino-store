@@ -112,104 +112,107 @@ export default function PoliciesPage({ setCurrentSlide, activePolicy = "shipping
   };
 
   return (
-    <div className="min-h-screen bg-arduino-gradient pt-20 pb-10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-8">
-          <button
-            onClick={handleBackToHome}
-            className="flex items-center gap-2 text-arduino-blue-300 hover:text-white transition-colors mb-4"
-          >
-            <ArrowLeft className="w-5 h-5" />
-            Back to Home
-          </button>
-          
-          <div className="flex items-center gap-4 mb-6">
-            <div className="text-4xl">{policy.icon}</div>
-            <div>
-              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{policy.title}</h1>
-              <p className="text-arduino-blue-300 text-lg">Important information about our services</p>
-            </div>
-          </div>
-        </div>
+    <div className="bg-arduino-gradient">
+      <section className="pt-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Policy Navigation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-4 mb-8 border border-arduino-blue-700/30"
-        >
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-            {Object.entries(policies).map(([key, policyData]) => (
-              <button
-                key={key}
-                onClick={() => handlePolicyChange(key)}
-                className={`p-3 rounded-lg text-sm font-medium transition-all ${
-                  key === activePolicy
-                    ? 'bg-arduino-blue-600 text-white'
-                    : 'bg-arduino-blue-700/30 text-arduino-blue-300 hover:bg-arduino-blue-700/50 hover:text-white'
-                }`}
-              >
-                <div className="flex flex-col sm:flex-row items-center gap-2">
-                  <span className="text-lg">{policyData.icon}</span>
-                  <span className="block text-xs mt-1 sm:text-sm sm:mt-0">{policyData.title}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Policy Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="space-y-6"
-        >
-          {policy.content.map((section, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30"
+          {/* Header */}
+          <div className="mb-8">
+            <button
+              onClick={handleBackToHome}
+              className="flex items-center gap-2 text-arduino-blue-300 hover:text-white transition-colors mb-4"
             >
-              <h3 className="text-xl font-bold text-white mb-3">{section.heading}</h3>
-              <p className="text-arduino-blue-200 leading-relaxed">{section.text}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Contact Information */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="mt-8 bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30"
-        >
-          <h3 className="text-xl font-bold text-white mb-4">Need Help?</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-arduino-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white">📱</span>
-              </div>
+              <ArrowLeft className="w-5 h-5" />
+              Back to Home
+            </button>
+            
+            <div className="flex items-center gap-4 mb-6">
+              <div className="text-4xl">{policy.icon}</div>
               <div>
-                <p className="text-arduino-blue-400 text-sm">WhatsApp Support</p>
-                <p className="text-white font-medium">+91 98765 43210</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-arduino-blue-600 rounded-lg flex items-center justify-center">
-                <span className="text-white">✉️</span>
-              </div>
-              <div>
-                <p className="text-arduino-blue-400 text-sm">Email Support</p>
-                <p className="text-white font-medium">support@arduinomart.com</p>
+                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">{policy.title}</h1>
+                <p className="text-arduino-blue-300 text-lg">Important information about our services</p>
               </div>
             </div>
           </div>
-        </motion.div>
-      </div>
+
+          {/* Policy Navigation */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-4 mb-8 border border-arduino-blue-700/30"
+          >
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {Object.entries(policies).map(([key, policyData]) => (
+                <button
+                  key={key}
+                  onClick={() => handlePolicyChange(key)}
+                  className={`p-3 rounded-lg text-sm font-medium transition-all ${
+                    key === activePolicy
+                      ? 'bg-arduino-blue-600 text-white'
+                      : 'bg-arduino-blue-700/30 text-arduino-blue-300 hover:bg-arduino-blue-700/50 hover:text-white'
+                  }`}
+                >
+                  <div className="flex flex-col sm:flex-row items-center gap-2">
+                    <span className="text-lg">{policyData.icon}</span>
+                    <span className="block text-xs mt-1 sm:text-sm sm:mt-0">{policyData.title}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Policy Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="space-y-6"
+          >
+            {policy.content.map((section, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30"
+              >
+                <h3 className="text-xl font-bold text-white mb-3">{section.heading}</h3>
+                <p className="text-arduino-blue-200 leading-relaxed">{section.text}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-8 bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30"
+          >
+            <h3 className="text-xl font-bold text-white mb-4">Need Help?</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-arduino-blue-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white">📱</span>
+                </div>
+                <div>
+                  <p className="text-arduino-blue-400 text-sm">WhatsApp Support</p>
+                  <p className="text-white font-medium">+91 98765 43210</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-arduino-blue-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white">✉️</span>
+                </div>
+                <div>
+                  <p className="text-arduino-blue-400 text-sm">Email Support</p>
+                  <p className="text-white font-medium">support@arduinomart.com</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
-} 
+}

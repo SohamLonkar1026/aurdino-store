@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global mobile-optimized styles */
+html, body {
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+#root, .app {
+  overscroll-behavior-y: none;
+}
+
+.slide > div {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
 :root {
   --background: hsl(0, 0%, 100%);
   --foreground: hsl(20, 14.3%, 4.1%);
@@ -104,15 +134,45 @@
 /* Custom slide animations */
 .slide-container {
   position: relative;
-  min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
+}
+
+/* Mobile-first optimizations */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    position: relative; /* Required for some mobile browsers */
+    -webkit-text-size-adjust: 100%; /* Prevent text scaling on iOS */
+    -ms-text-size-adjust: 100%;
+    touch-action: manipulation; /* Improve touch responsiveness */
+  }
+
+  /* Optimize slide containers for mobile */
+  .slide-container {
+    min-height: 100vh;
+    min-height: 100dvh; /* Use dynamic viewport height on modern browsers */
+  }
+
+  /* Ensure proper touch scrolling */
+  .slide {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  /* Mobile-specific button improvements */
+  button, .button {
+    min-height: 44px; /* Apple's recommended minimum touch target */
+    min-width: 44px;
+  }
 }
 
 .slide {
   width: 100%;
-  min-height: 100vh;
-  overflow-y: auto;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 

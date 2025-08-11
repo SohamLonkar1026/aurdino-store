@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "@/context/CartContext";
-import Footer from "../Footer";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Package, Clock, Zap } from "lucide-react";
 
@@ -71,7 +71,7 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
     {
       id: 3,
       title: "Weather Station",
-      icon: "🌤️",
+      icon: "🌤",
       description: "Monitor temperature, humidity, and atmospheric pressure",
       components: ["Arduino Nano", "LCD1602 Display", "DHT22 Sensor", "BMP180 Sensor", "Breadboard", "Jumper Wires", "9V Battery"],
       difficulty: "Beginner",
@@ -115,22 +115,23 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-arduino-gradient relative overflow-hidden">
+    <div className="bg-arduino-gradient relative overflow-hidden">
+      <section className="pt-16 sm:pt-20 pb-0">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div 
           className="absolute inset-0" 
           style={{
             backgroundImage: `radial-gradient(circle at 25px 25px, rgba(255,255,255,.2) 2px, transparent 0), radial-gradient(circle at 75px 75px, rgba(255,255,255,.1) 2px, transparent 0)`,
             backgroundSize: "100px 100px"
-          }}
+          } as React.CSSProperties}
         />
       </div>
       
-      <div className="relative z-10 flex-1 flex flex-col pt-20">
+      <div className="relative z-10">
         {/* Hero Section */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex-1">
-          <div className="text-center mb-12 sm:mb-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-12">
+          <div className="text-center mb-8 sm:mb-16">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white to-arduino-blue-200 bg-clip-text text-transparent">
               Build Amazing Projects
             </h1>
@@ -229,11 +230,11 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
                         <span className="text-arduino-blue-400">Time:</span>
                         <span className="text-arduino-blue-300">{project.timeRequired}</span>
                       </div>
-                      <div className="text-xs text-arduino-blue-400">
+                      <div className="w-full flex flex-col flex-grow p-2 border border-white/20 rounded-md">
                         <span className="font-medium">Components needed:</span>
                         <div className="mt-1 flex flex-wrap gap-1">
                           {project.components.slice(0, 2).map((component, index) => (
-                            <span key={index} className="bg-arduino-blue-700/50 px-2 py-1 rounded text-xs">
+                            <span key={index} className="border border-white px-2 py-1 rounded text-xs">
                               {component}
                             </span>
                           ))}
@@ -268,8 +269,9 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
           </div>
         </div>
       </div>
+      </section>
       
-      <Footer setCurrentSlide={setCurrentSlide} />
-    </div>
-  );
+      
+ </div>
+);
 }

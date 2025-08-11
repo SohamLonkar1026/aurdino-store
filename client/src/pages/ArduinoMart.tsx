@@ -9,6 +9,7 @@ import AdminPage from "../components/slides/AdminPage";
 import CheckoutPage from "../components/slides/CheckoutPage";
 import ProjectDetailPage from "../components/slides/ProjectDetailPage";
 import PoliciesPage from "../components/slides/PoliciesPage";
+import Footer from "../components/Footer";
 
 export default function ArduinoMart() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -33,7 +34,7 @@ export default function ArduinoMart() {
   ];
 
   return (
-    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden min-h-screen flex flex-col">
+    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden min-h-screen min-h-[100dvh] flex flex-col">
       <Navigation 
         currentSlide={currentSlide} 
         setCurrentSlide={setCurrentSlide}
@@ -46,27 +47,30 @@ export default function ArduinoMart() {
         onCheckout={() => setCurrentSlide(5)}
       />
       
-      <div className="slide-container flex-grow">
-        {slides.map((slide, index) => {
-          const SlideComponent = slide.component;
-          return (
-            <div
-              key={index}
-              className={`slide ${index === currentSlide ? 'active' : 'inactive'}`}
-            >
-              {index === 0 ? (
-                <SlideComponent setCurrentSlide={setCurrentSlide} setSelectedProjectId={setSelectedProjectId} />
-              ) : index === 6 ? (
-                <SlideComponent setCurrentSlide={setCurrentSlide} projectId={selectedProjectId || undefined} />
-              ) : index === 7 ? (
-                <SlideComponent setCurrentSlide={setCurrentSlide} activePolicy="shipping" />
-              ) : (
-                <SlideComponent setCurrentSlide={setCurrentSlide} />
-              )}
-            </div>
-          );
-        })}
-      </div>
+      <main className="flex-1">
+        <div className="slide-container flex">
+          {slides.map((slide, index) => {
+            const SlideComponent = slide.component;
+            return (
+              <div
+                key={index}
+                className={`slide ${index === currentSlide ? 'active' : 'inactive'} flex flex-col`}
+              >
+                {index === 0 ? (
+                  <SlideComponent setCurrentSlide={setCurrentSlide} setSelectedProjectId={setSelectedProjectId} />
+                ) : index === 6 ? (
+                  <SlideComponent setCurrentSlide={setCurrentSlide} projectId={selectedProjectId || undefined} />
+                ) : index === 7 ? (
+                  <SlideComponent setCurrentSlide={setCurrentSlide} activePolicy="shipping" />
+                ) : (
+                  <SlideComponent setCurrentSlide={setCurrentSlide} />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </main>
+      <Footer setCurrentSlide={setCurrentSlide} isHomePage={currentSlide === 0} />
     </div>
   );
 }

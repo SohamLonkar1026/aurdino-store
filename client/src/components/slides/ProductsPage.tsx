@@ -1,7 +1,7 @@
 import ProductCard from "../ProductCard";
 import { products } from "../../lib/products";
 import { useCart } from "../../context/CartContext";
-import Footer from "../Footer";
+
 
 interface ProductsPageProps {
   setCurrentSlide: (slide: number) => void;
@@ -19,7 +19,8 @@ export default function ProductsPage({ setCurrentSlide }: ProductsPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-arduino-blue-950 pt-20 pb-10">
+    <div className="bg-arduino-blue-950">
+      <section className="pt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 px-4">Arduino Components Store</h1>
@@ -56,8 +57,9 @@ export default function ProductsPage({ setCurrentSlide }: ProductsPageProps) {
           ))}
         </div>
       </div>
+      </section>
       
-      <Footer setCurrentSlide={setCurrentSlide} />
+      
     </div>
   );
 }

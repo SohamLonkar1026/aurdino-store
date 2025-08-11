@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import Footer from "../Footer";
+
 
 interface ContactPageProps {
   setCurrentSlide: (slide: number) => void;
@@ -53,7 +53,8 @@ export default function ContactPage({ setCurrentSlide }: ContactPageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-arduino-blue-950 pt-20 pb-10">
+    <div className="bg-arduino-blue-950">
+      <section className="pt-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
@@ -144,8 +145,9 @@ export default function ContactPage({ setCurrentSlide }: ContactPageProps) {
           </div>
         </div>
       </div>
+      </section>
       
-      <Footer setCurrentSlide={setCurrentSlide} />
+      
     </div>
   );
 }
