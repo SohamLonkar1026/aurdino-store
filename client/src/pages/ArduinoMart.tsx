@@ -16,11 +16,33 @@ export default function ArduinoMart() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
-  // Scroll to top whenever the slide changes
+  // Enhanced scroll to top functionality
   React.useEffect(() => {
-    // Immediate scroll to top for all page changes
+    // Scroll to top immediately when slide changes
     window.scrollTo(0, 0);
+    
+    // Also try smooth scroll after a small delay to ensure it works on all browsers
+    const timeoutId = setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 50);
+    
+    // Force scroll to top for mobile browsers
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    return () => clearTimeout(timeoutId);
   }, [currentSlide]);
+  
+  // Enhanced slide change function with scroll to top
+  const handleSlideChange = React.useCallback((slideIndex: number) => {
+    // Immediate scroll to top
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    
+    // Update slide
+    setCurrentSlide(slideIndex);
+  }, []);
 
   const slides = [
     { component: HomePage, name: "Home" },
@@ -37,14 +59,14 @@ export default function ArduinoMart() {
     <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden flex flex-col">
       <Navigation 
         currentSlide={currentSlide} 
-        setCurrentSlide={setCurrentSlide}
+        setCurrentSlide={handleSlideChange}
         toggleCart={() => setIsCartOpen(!isCartOpen)}
       />
       
       <Cart 
         isOpen={isCartOpen} 
         onClose={() => setIsCartOpen(false)}
-        onCheckout={() => setCurrentSlide(5)}
+        onCheckout={() => handleSlideChange(5)}
       />
       
       <main className="flex-1">
@@ -57,20 +79,20 @@ export default function ArduinoMart() {
                 className={`slide ${index === currentSlide ? 'active' : 'inactive'} flex flex-col`}
               >
                 {index === 0 ? (
-                  <SlideComponent setCurrentSlide={setCurrentSlide} setSelectedProjectId={setSelectedProjectId} />
+                  <SlideComponent setCurrentSlide={handleSlideChange} setSelectedProjectId={setSelectedProjectId} />
                 ) : index === 6 ? (
-                  <SlideComponent setCurrentSlide={setCurrentSlide} projectId={selectedProjectId || undefined} />
+                  <SlideComponent setCurrentSlide={handleSlideChange} projectId={selectedProjectId || undefined} />
                 ) : index === 7 ? (
-                  <SlideComponent setCurrentSlide={setCurrentSlide} activePolicy="shipping" />
+                  <SlideComponent setCurrentSlide={handleSlideChange} activePolicy="shipping" />
                 ) : (
-                  <SlideComponent setCurrentSlide={setCurrentSlide} />
+                  <SlideComponent setCurrentSlide={handleSlideChange} />
                 )}
               </div>
             );
           })}
         </div>
       </main>
-      <Footer setCurrentSlide={setCurrentSlide} isHomePage={currentSlide === 0} />
+      <Footer setCurrentSlide={handleSlideChange} isHomePage={currentSlide === 0} />
     </div>
   );
 }
