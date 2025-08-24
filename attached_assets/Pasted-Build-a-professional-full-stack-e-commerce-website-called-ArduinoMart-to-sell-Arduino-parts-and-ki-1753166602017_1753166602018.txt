@@ -1,0 +1,120 @@
+Build a professional full-stack e-commerce website called "ArduinoMart" to sell Arduino parts and kits.
+
+---
+
+🎯 Homepage (Make it large, clean, futuristic, and deep blue themed):
+- Big hero banner: “Build Amazing Projects with Arduino”
+- Tagline: “A VIT-Based Startup”
+- Use gradient blues and modern fonts
+- Add section: “Why Buy From Us Instead of Big Dealers” with these points:
+   1. Because we’re just a small startup.
+   2. We don’t have a warehouse — so no need to earn more per kit.
+   3. Admin has no girlfriend — even less money required.
+   4. Admin only needs money for Friday night.
+- Highlight the Arduino Starter Kit (₹1250) in a featured box
+- Add attractive placeholder images of Arduino projects
+- Include a button to slide to other sections like Products, About, Contact, and Admin
+
+---
+
+🛒 Products Section (Fullscreen slide):
+Add the following 43 products:
+
+1. SMD Arduino UNO R3 Board
+2. Ultrasonic Distance Sensor
+3. Servo Motor
+4. DC Motor
+5. Relay
+6. LCD1602 Display
+7. 7-Segment Display 4X module
+8. Active Buzzer
+9. 2x Analog Thermistor – Temp Sensor
+10. 2x Light Sensor (Photo-resistor)
+11. Tilt Switch
+12. 2x Button Switch (Large)
+13. RGB LED
+14. 5x Red LED
+15. 5x Green LED
+16. 5x Yellow LED
+17. 5x Blue LED
+18. 6x Resistor (220 Ω)
+19. 6x Resistor (10 kΩ)
+20. I2C Module
+21. IR Sensor Module / Bare Sensor
+22. 2x NPN Transistor (8050)
+23. Potentiometer (10kΩ)
+24. 2x 1N4148 Diode
+25. 2x 1N4001 Diode
+26. USB Cable
+27. Breadboard
+28. Battery Holder
+29. 40x Male to Male Jumper Wires
+30. 20x Male to Female Jumper Wires
+31. Header (40 pin)
+32. Band Resistor Card
+33. L293D Motor Driver IC
+34. Laser Diode
+35. Piezoelectric Sensor
+36. Resistor 2.2k ohm
+37. HC-05 Bluetooth Module
+38. Opto-coupler
+39. Inductor
+40. 2x Capacitor (104)
+41. 2x Capacitor (10uF)
+42. Project Box
+
++ Arduino Starter Kit — contains all above — price ₹1250
+
+Each product should show:
+- Name
+- Price
+- Add to cart
+- Quantity support
+- Cart icon in top right with item count
+- Notification when item is added
+
+---
+
+🧾 Order Slide:
+- Form to collect:
+   - Full name
+   - Address
+   - Mobile
+   - Class/Branch
+- Save orders to Replit DB
+
+---
+
+🔐 Admin Panel Slide (password protected: soham11):
+- Show all orders
+- Option to tick ✅ when order is completed (checkbox)
+- Allow delete only if marked completed
+
+---
+
+📘 About Slide:
+- Explain Arduino in simple language
+- Show all 42 parts from the Starter Kit with beginner-friendly names and icons
+- Mention VIT-based startup, beginner focus, and passion project
+
+📞 Contact Slide:
+- Contact form: name, email, message
+- Show dummy WhatsApp and email for contact
+
+---
+
+🎨 Design:
+- Modern, futuristic UI using blue gradients
+- Use full-width slides/pages for Homepage, Products, About, Contact, Admin
+- Clean, professional fonts
+- Fix font visibility on all backgrounds
+
+---
+
+🛠 Tech:
+- Frontend with modern HTML/CSS/JS or React (your choice)
+- Backend with Express.js
+- Use Replit DB to store orders
+- Build everything in one full-stack Replit app
+
+Deploy-ready version.
