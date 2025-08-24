@@ -6,13 +6,17 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import ArduinoMart from "@/pages/ArduinoMart";
 import NotFound from "@/pages/not-found";
 import { CartProvider } from "@/context/CartContext";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={ArduinoMart}/>
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/" component={ArduinoMart}/>
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 
