@@ -3,19 +3,25 @@
   "compilerOptions": {
     "outDir": "dist/server",
     "rootDir": ".",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ESNext",
     "sourceMap": true,
     "declaration": true,
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@shared/*": ["./shared/*"]
     }
   },
-  "include": ["server/**/*.ts"],
+  "include": [
+    "server/**/*.ts",
+    "shared/**/*.ts"
+  ],
   "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
