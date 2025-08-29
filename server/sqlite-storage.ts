@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { type Order, type InsertOrder, type Contact, type InsertContact } from "../shared/schema.js";
+import { type Order, type InsertOrder, type Contact, type InsertContact } from "@shared/schema.js";
 
 export interface IStorage {
   // Orders
