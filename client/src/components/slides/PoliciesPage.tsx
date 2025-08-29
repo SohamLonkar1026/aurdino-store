@@ -112,8 +112,8 @@ export default function PoliciesPage({ setCurrentSlide, activePolicy = "shipping
   };
 
   return (
-    <div className="bg-arduino-gradient">
-      <section className="pt-20">
+    <div className="bg-arduino-gradient h-full flex flex-col">
+      <section className="pt-20 flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Header */}

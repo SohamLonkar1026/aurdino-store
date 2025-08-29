@@ -109,8 +109,8 @@ export default function CheckoutPage({ setCurrentSlide }: CheckoutPageProps) {
   };
 
   return (
-    <div className="bg-arduino-blue-950">
-      <section className="pt-20">
+    <div className="bg-arduino-blue-950 h-full flex flex-col">
+      <section className="pt-20 flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4">Checkout</h1>

@@ -53,8 +53,8 @@ export default function ContactPage({ setCurrentSlide }: ContactPageProps) {
   };
 
   return (
-    <div className="bg-arduino-blue-950">
-      <section className="pt-20">
+    <div className="bg-arduino-blue-950 h-full flex flex-col">
+      <section className="pt-20 flex-1 overflow-y-auto">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>

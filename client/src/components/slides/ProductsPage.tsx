@@ -19,8 +19,8 @@ export default function ProductsPage({ setCurrentSlide }: ProductsPageProps) {
   };
 
   return (
-    <div className="bg-arduino-blue-950">
-      <section className="pt-20">
+    <div className="bg-arduino-blue-950 h-full flex flex-col">
+      <section className="pt-20 flex-1 overflow-y-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 px-4">Arduino Components Store</h1>

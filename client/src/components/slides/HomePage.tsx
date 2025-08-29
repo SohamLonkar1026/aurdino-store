@@ -115,8 +115,8 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
   ];
 
   return (
-    <div className="bg-arduino-gradient relative overflow-hidden">
-      <section className="pt-16 sm:pt-20 pb-0">
+    <div className="bg-arduino-gradient relative overflow-hidden h-full flex flex-col">
+      <section className="pt-16 sm:pt-20 pb-0 flex-1 overflow-y-auto">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div 

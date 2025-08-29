@@ -148,7 +148,8 @@ export default function ProjectDetailPage({ setCurrentSlide, projectId }: Projec
   };
 
   return (
-    <div className="bg-arduino-gradient pt-20 pb-10">
+    <div className="bg-arduino-gradient h-full flex flex-col">
+      <section className="pt-20 flex-1 overflow-y-auto">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
@@ -318,6 +319,7 @@ export default function ProjectDetailPage({ setCurrentSlide, projectId }: Projec
           </div>
         </div>
       </div>
+      </section>
     </div>
   );
 } 

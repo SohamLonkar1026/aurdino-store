@@ -6,7 +6,7 @@
 html, body {
   overscroll-behavior-y: none;
   overflow-x: hidden;
-  height: 100%;
+  height: 100vh;
   margin: 0;
   padding: 0;
 }
@@ -14,23 +14,28 @@ html, body {
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-
-main {
-  flex: 1;
+  height: 100vh;
 }
 
 #root, .app {
   overscroll-behavior-y: none;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .slide > div {
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 64px); /* Account for navigation height */
 }
 
-
+/* Remove default margins and padding from all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 :root {
   --background: hsl(0, 0%, 100%);
@@ -154,14 +159,16 @@ main {
 
   /* Optimize slide containers for mobile */
   .slide-container {
-    min-height: 100vh;
-    min-height: 100dvh; /* Use dynamic viewport height on modern browsers */
+    height: calc(100vh - 64px); /* Account for navigation */
+    overflow: hidden;
   }
 
   /* Ensure proper touch scrolling */
   .slide {
     -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
+    overscroll-behavior: none;
+    height: 100%;
+    overflow-y: auto;
   }
 
   /* Mobile-specific button improvements */
@@ -173,6 +180,9 @@ main {
 
 .slide {
   width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
   transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
@@ -190,7 +200,15 @@ main {
   position: absolute;
   top: 0;
   left: 0;
+  height: 100%;
   pointer-events: none;
+}
+
+/* Slide container */
+.slide-container {
+  height: calc(100vh - 64px); /* Account for navigation */
+  overflow: hidden;
+  position: relative;
 }
 
 /* Custom gradient backgrounds */

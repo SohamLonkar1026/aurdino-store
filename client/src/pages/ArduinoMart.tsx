@@ -16,30 +16,47 @@ export default function ArduinoMart() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(null);
 
-  // Enhanced scroll to top functionality
+  // Enhanced scroll to top functionality - works for all slide changes
   React.useEffect(() => {
-    // Scroll to top immediately when slide changes
-    window.scrollTo(0, 0);
+    // Multiple approaches to ensure scroll to top works everywhere
+    const scrollToTop = () => {
+      // Method 1: Window scroll
+      window.scrollTo(0, 0);
+      
+      // Method 2: Document element scroll
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      
+      // Method 3: Find active slide and scroll it
+      const activeSlide = document.querySelector('.slide.active');
+      if (activeSlide) {
+        activeSlide.scrollTop = 0;
+      }
+      
+      // Method 4: Force scroll on main container
+      const mainContainer = document.querySelector('main');
+      if (mainContainer) {
+        mainContainer.scrollTop = 0;
+      }
+    };
     
-    // Also try smooth scroll after a small delay to ensure it works on all browsers
-    const timeoutId = setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 50);
+    // Execute immediately
+    scrollToTop();
     
-    // Force scroll to top for mobile browsers
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
+    // Execute again after a short delay to handle any async rendering
+    const timeoutId = setTimeout(scrollToTop, 100);
     
-    return () => clearTimeout(timeoutId);
+    // Execute one more time to be absolutely sure
+    const timeoutId2 = setTimeout(scrollToTop, 300);
+    
+    return () => {
+      clearTimeout(timeoutId);
+      clearTimeout(timeoutId2);
+    };
   }, [currentSlide]);
   
-  // Enhanced slide change function with scroll to top
+  // Enhanced slide change function
   const handleSlideChange = React.useCallback((slideIndex: number) => {
-    // Immediate scroll to top
-    window.scrollTo(0, 0);
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    
     // Update slide
     setCurrentSlide(slideIndex);
   }, []);
@@ -56,7 +73,7 @@ export default function ArduinoMart() {
   ];
 
   return (
-    <div className="font-sans bg-arduino-blue-950 text-white overflow-x-hidden flex flex-col">
+    <div className="font-sans bg-arduino-blue-950 text-white overflow-hidden h-screen flex flex-col">
       <Navigation 
         currentSlide={currentSlide} 
         setCurrentSlide={handleSlideChange}
@@ -69,7 +86,7 @@ export default function ArduinoMart() {
         onCheckout={() => handleSlideChange(5)}
       />
       
-      <main className="flex-1">
+      <main className="flex-1 overflow-hidden">
         <div className="slide-container flex">
           {slides.map((slide, index) => {
             const SlideComponent = slide.component;

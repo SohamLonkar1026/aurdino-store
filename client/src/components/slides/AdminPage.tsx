@@ -136,8 +136,8 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
   }
 
   return (
-    <div className="bg-arduino-blue-950">
-      <section>
+    <div className="bg-arduino-blue-950 h-full flex flex-col">
+      <section className="pt-20 flex-1 overflow-y-auto">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 px-4">Admin Panel</h1>
