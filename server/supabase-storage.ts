@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { type Order, type InsertOrder, type Contact, type InsertContact } from "@shared/schema";
+import { type Order, type InsertOrder, type Contact, type InsertContact } from "../shared/schema.js";
 
 export interface IStorage {
   // Orders

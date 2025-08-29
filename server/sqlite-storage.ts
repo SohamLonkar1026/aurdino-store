@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { type Order, type InsertOrder, type Contact, type InsertContact } from "@shared/schema";
+import { type Order, type InsertOrder, type Contact, type InsertContact } from "../shared/schema.js";
 
 export interface IStorage {
   // Orders
@@ -91,6 +91,7 @@ export class SQLiteStorage implements IStorage {
         id: result.lastInsertRowid as number,
         ...orderData,
         items: JSON.parse(orderData.items),
+        total: Number(orderData.total) // Ensure total is a number
       };
     } catch (error) {
       console.error("Error creating order:", error);
