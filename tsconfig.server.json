@@ -3,6 +3,8 @@
   "compilerOptions": {
     "outDir": "dist/server",
     "rootDir": ".",
+    "noEmit": false,
+    "allowImportingTsExtensions": false,
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "esModuleInterop": true,

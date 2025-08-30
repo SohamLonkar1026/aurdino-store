@@ -8,7 +8,7 @@
     "start": "node --enable-source-maps dist/server/index.js",
     "build": "npm run build:client && npm run build:server",
     "build:client": "vite build",
-    "build:server": "tsc --project tsconfig.server.json || true && tsc-alias -p tsconfig.server.json && node scripts/add-js-extensions.cjs",
+    "build:server": "tsc --project tsconfig.server.json && tsc-alias -p tsconfig.server.json && node scripts/add-js-extensions.cjs",
     "postinstall": "npm run build",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

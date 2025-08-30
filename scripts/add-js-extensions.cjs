@@ -3,6 +3,12 @@ const path = require('path');
 
 const distDir = path.join(__dirname, '..', 'dist', 'server');
 
+// Check if dist/server directory exists
+if (!fs.existsSync(distDir)) {
+  console.error(`Error: Directory ${distDir} does not exist. Make sure TypeScript compilation succeeded.`);
+  process.exit(1);
+}
+
 function processFile(filePath) {
   let content = fs.readFileSync(filePath, 'utf8');
   
