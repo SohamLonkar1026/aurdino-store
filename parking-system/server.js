@@ -488,8 +488,9 @@ process.on('SIGINT', () => {
 
 // Start server
 initDatabase();
-app.listen(PORT, () => {
-    console.log(`Parking system server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Parking system server running on http://0.0.0.0:${PORT}`);
+    console.log(`Also accessible at http://localhost:${PORT}`);
     console.log('API endpoints:');
     console.log('  POST /api/scan - QR code scanning');
     console.log('  POST /api/register-vehicle - Register new vehicle');

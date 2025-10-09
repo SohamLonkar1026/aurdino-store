@@ -1,0 +1,10 @@
+Parking system server running on http://0.0.0.0:8000
+Also accessible at http://localhost:8000
+API endpoints:
+  POST /api/scan - QR code scanning
+  POST /api/register-vehicle - Register new vehicle
+  GET /api/logs?vehicle_id=<id> - Get parking logs
+  GET /api/vehicles - List all vehicles
+  GET /api/config - Get parking configuration
+  GET /api/health - Health check
+Connected to SQLite database
