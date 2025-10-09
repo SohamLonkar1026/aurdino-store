@@ -1,0 +1,27 @@
+{
+  "name": "automatic-parking-system",
+  "version": "1.0.0",
+  "description": "Web-based automatic parking system with QR code scanning",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test tests/*.test.js",
+    "setup-db": "node setup-db.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "express-rate-limit": "^7.1.5",
+    "sqlite3": "^5.1.6",
+    "crypto": "^1.0.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3"
+  },
+  "keywords": ["parking", "qr-code", "webrtc", "express", "sqlite"],
+  "author": "Parking System Developer",
+  "license": "MIT"
+}
