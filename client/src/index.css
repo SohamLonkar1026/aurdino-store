@@ -15,6 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--arduino-blue-950);
 }
 
 main {
@@ -23,6 +24,10 @@ main {
 
 #root, .app {
   overscroll-behavior-y: none;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--arduino-blue-950);
 }
 
 .slide > div {
@@ -241,4 +246,10 @@ footer a:hover {
 footer a:focus {
   outline: none;
   text-decoration: none;
+}
+
+/* Remove extra spacing below footer in admin panel */
+.slide section {
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

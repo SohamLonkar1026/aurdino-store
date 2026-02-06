@@ -5,7 +5,7 @@ interface FooterProps {
 
 export default function Footer({ setCurrentSlide, isHomePage = false }: FooterProps) {
   return (
-    <footer className="bg-arduino-blue-950 border-t border-arduino-blue-800/30 mt-auto">
+    <footer className="bg-arduino-blue-950 border-t border-arduino-blue-800/30 mt-auto mb-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
