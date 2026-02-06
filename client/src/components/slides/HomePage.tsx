@@ -138,8 +138,8 @@ export default function HomePage({ setCurrentSlide, setSelectedProjectId }: Home
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
               with Arduino
             </h2>
-            <p className="text-lg sm:text-xl md:text-2xl text-arduino-blue-200 mb-2">
-              A VIT-Based Startup
+            <p className="text-lg sm:text-xl md:text-2xl mb-2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-amber-500 bg-clip-text text-transparent font-semibold">
+              By Soham Lonkar
             </p>
             <p className="text-base sm:text-lg text-arduino-blue-300 max-w-2xl mx-auto px-4">
               Your one-stop shop for Arduino components, kits, and everything you need to bring your electronic projects to life.
