@@ -17,8 +17,12 @@ export class SupabaseStorage implements IStorage {
   private supabase;
 
   constructor() {
-    const supabaseUrl = process.env.VITE_SUPABASE_URL || 'https://ewnsweuvockpuksrcznq.supabase.co';
-    const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV3bnN3ZXV2b2NrcHVrc3Jjem5xIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQyMjYwMTUsImV4cCI6MjA2OTgwMjAxNX0.v4bnHjJ7kibYb3eLkKHbvJyCvQmau04hZVXaRtHz_JA';
+    const supabaseUrl = process.env.VITE_SUPABASE_URL;
+    const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+    
+    if (!supabaseUrl || !supabaseKey) {
+      throw new Error('Supabase credentials are required. Please set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY environment variables.');
+    }
     
     this.supabase = createClient(supabaseUrl, supabaseKey);
   }

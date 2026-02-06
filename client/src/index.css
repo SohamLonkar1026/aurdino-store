@@ -135,6 +135,7 @@ main {
 .slide-container {
   position: relative;
   overflow-x: hidden;
+  min-height: 0;
 }
 
 /* Mobile-first optimizations */
@@ -152,10 +153,10 @@ main {
     touch-action: manipulation; /* Improve touch responsiveness */
   }
 
-  /* Optimize slide containers for mobile */
+  /* Let each slide's height be defined by its content on mobile
+     so we don't force unnecessary extra scroll space */
   .slide-container {
-    min-height: 100vh;
-    min-height: 100dvh; /* Use dynamic viewport height on modern browsers */
+    min-height: auto;
   }
 
   /* Ensure proper touch scrolling */
@@ -181,6 +182,7 @@ main {
   opacity: 1;
   z-index: 10;
   position: relative;
+  height: auto;
 }
 
 .slide.inactive {
@@ -191,6 +193,9 @@ main {
   top: 0;
   left: 0;
   pointer-events: none;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
 }
 
 /* Custom gradient backgrounds */

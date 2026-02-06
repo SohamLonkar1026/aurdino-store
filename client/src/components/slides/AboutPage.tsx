@@ -7,7 +7,7 @@ interface AboutPageProps {
 
 export default function AboutPage({ setCurrentSlide }: AboutPageProps) {
   return (
-    <div className="bg-arduino-blue-950">
+    <div className="bg-arduino-blue-950 pb-16">
       <section className="pt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">

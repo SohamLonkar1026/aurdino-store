@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Order, Contact } from "@shared/schema";
@@ -28,6 +28,29 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
     queryKey: ["/api/contacts"],
     enabled: isLoggedIn,
   });
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+
+    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    const wsUrl = `${protocol}//${window.location.host}/ws`;
+    const ws = new WebSocket(wsUrl);
+
+    ws.onmessage = (event) => {
+      const message = JSON.parse(event.data);
+      if (message.type === "new_order") {
+        toast({
+          title: "New Order Received!",
+          description: `Order #${message.order.orderId} from ${message.order.fullName}`,
+        });
+        queryClient.invalidateQueries({ queryKey: ["/api/orders"] });
+      }
+    };
+
+    return () => {
+      ws.close();
+    };
+  }, [isLoggedIn, queryClient, toast]);
 
   const updateStatusMutation = useMutation({
     mutationFn: async ({ orderId, status }: { orderId: string; status: string }) => {

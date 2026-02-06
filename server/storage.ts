@@ -1,2 +1,2 @@
-// Re-export Supabase storage for cloud database
-export { storage, type IStorage } from "./supabase-storage";
+// Re-export SQLite storage for local database
+export { storage, type IStorage } from "./sqlite-storage";
