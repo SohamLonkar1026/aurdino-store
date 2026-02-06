@@ -127,8 +127,8 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
 
   if (!isLoggedIn) {
     return (
-      <div className="bg-arduino-blue-950">
-        <section>
+      <div className="bg-arduino-blue-950 min-h-0 flex flex-col">
+        <section className="flex-1 pb-0">
           <div className="max-w-md mx-auto px-4">
             <div className="bg-arduino-blue-800/50 backdrop-blur-sm rounded-xl p-8 border border-arduino-blue-700/30">
             <h1 className="text-3xl font-bold text-center mb-8">Admin Access</h1>
@@ -159,8 +159,8 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
   }
 
   return (
-    <div className="bg-arduino-blue-950">
-      <section>
+    <div className="bg-arduino-blue-950 min-h-0 flex flex-col">
+      <section className="flex-1 pb-0">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4 px-4">Admin Panel</h1>
