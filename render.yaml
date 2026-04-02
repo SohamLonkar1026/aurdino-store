@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: arduinomart
+    env: node
+    plan: free
+    buildCommand: npm install && npx vite build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+
+databases:
+  - name: arduinomart-db
+    databaseName: arduinomart
+    user: arduinomart_user 

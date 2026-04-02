@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArduinoMart - Build Amazing Projects with Arduino</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        'arduino-blue': {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1e3a8a',
+                            950: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="font-sans bg-arduino-blue-950 text-white overflow-x-hidden">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-arduino-blue-950/90 backdrop-blur-md border-b border-arduino-blue-800/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-gradient-to-br from-arduino-blue-400 to-arduino-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-microchip text-white text-sm"></i>
+                    </div>
+                    <h1 class="text-xl font-bold text-white">ArduinoMart</h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <button onclick="showSlide(0)" class="nav-link text-arduino-blue-200 hover:text-white transition-colors">Home</button>
+                    <button onclick="showSlide(1)" class="nav-link text-arduino-blue-200 hover:text-white transition-colors">Products</button>
+                    <button onclick="showSlide(2)" class="nav-link text-arduino-blue-200 hover:text-white transition-colors">About</button>
+                    <button onclick="showSlide(3)" class="nav-link text-arduino-blue-200 hover:text-white transition-colors">Contact</button>
+                    <button onclick="showSlide(4)" class="nav-link text-arduino-blue-200 hover:text-white transition-colors">Admin</button>
+                </div>
+                
+                <!-- Cart Icon -->
+                <button onclick="toggleCart()" class="relative p-2 text-arduino-blue-200 hover:text-white transition-colors">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-arduino-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="fixed top-0 right-0 h-full w-96 bg-arduino-blue-900 z-60 transform translate-x-full transition-transform duration-300 shadow-2xl">
+        <div class="p-6 border-b border-arduino-blue-800">
+            <div class="flex justify-between items-center">
+                <h2 class="text-xl font-bold">Shopping Cart</h2>
+                <button onclick="toggleCart()" class="text-arduino-blue-300 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="cartItems" class="p-6 flex-1 overflow-y-auto">
+            <p class="text-arduino-blue-300 text-center">Your cart is empty</p>
+        </div>
+        <div class="p-6 border-t border-arduino-blue-800">
+            <div class="mb-4">
+                <div class="flex justify-between items-center text-lg font-semibold">
+                    <span>Total: ₹<span id="cartTotal">0</span></span>
+                </div>
+            </div>
+            <button onclick="showSlide(5)" class="w-full bg-gradient-to-r from-arduino-blue-500 to-arduino-blue-600 text-white py-3 rounded-lg font-medium hover:from-arduino-blue-600 hover:to-arduino-blue-700 transition-all">
+                Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Slides Container -->
+    <div id="slidesContainer" class="relative">
+        
+        <!-- Slide 0: Homepage -->
+        <div class="slide min-h-screen bg-gradient-to-br from-arduino-blue-950 via-arduino-blue-900 to-arduino-blue-800 relative overflow-hidden" data-slide="0">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 opacity-10">
+                <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25px 25px, rgba(255,255,255,.2) 2px, transparent 0), radial-gradient(circle at 75px 75px, rgba(255,255,255,.1) 2px, transparent 0); background-size: 100px 100px;"></div>
+            </div>
+            
+            <div class="relative z-10 pt-20">
+                <!-- Hero Section -->
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                    <div class="text-center mb-16">
+                        <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-arduino-blue-200 bg-clip-text text-transparent">
+                            Build Amazing Projects
+                        </h1>
+                        <h2 class="text-3xl md:text-5xl font-bold mb-4">
+                            with Arduino
+                        </h2>
+                        <p class="text-xl md:text-2xl text-arduino-blue-200 mb-2">
+                            A VIT-Based Startup
+                        </p>
+                        <p class="text-lg text-arduino-blue-300 max-w-2xl mx-auto">
+                            Your one-stop shop for Arduino components, kits, and everything you need to bring your electronic projects to life.
+                        </p>
+                    </div>
+
+                    <!-- Featured Product -->
+                    <div class="max-w-4xl mx-auto mb-20">
+                        <div class="bg-gradient-to-r from-arduino-blue-800/50 to-arduino-blue-700/50 backdrop-blur-sm rounded-3xl p-8 border border-arduino-blue-600/30 relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-arduino-blue-500/10 to-transparent"></div>
+                            <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <!-- Arduino Starter Kit promotional image -->
+                                    <img src="https://images.unsplash.com/photo-1518133910546-b6c2fb7d79e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Arduino Starter Kit with various electronic components" class="rounded-xl shadow-lg w-full h-auto">
+                                </div>
+                                <div>
+                                    <h3 class="text-3xl font-bold mb-4 text-white">Arduino Starter Kit</h3>
+                                    <p class="text-arduino-blue-200 mb-6 text-lg">Everything you need to get started with Arduino - 42 essential components in one complete package.</p>
+                                    <div class="flex items-center gap-4 mb-6">
+                                        <span class="text-4xl font-bold text-arduino-blue-400">₹1,250</span>
+                                        <span class="text-lg text-arduino-blue-300 line-through">₹2,000</span>
+                                        <span class="bg-arduino-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">Save 38%</span>
+                                    </div>
+                                    <button onclick="addToCart('arduino-starter-kit', 'Arduino Starter Kit', 1250)" class="bg-gradient-to-r from-arduino-blue-500 to-arduino-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:from-arduino-blue-600 hover:to-arduino-blue-700 transition-all transform hover:scale-105 shadow-lg">
+                                        <i class="fas fa-cart-plus mr-2"></i>
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Why Choose Us Section -->
+                    <div class="max-w-6xl mx-auto mb-20">
+                        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Why Buy From Us Instead of Big Dealers?</h2>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div class="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30 text-center hover:bg-arduino-blue-800/50 transition-all">
+                                <div class="w-12 h-12 bg-arduino-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-seedling text-white"></i>
+                                </div>
+                                <h3 class="font-semibold mb-2">Small Startup</h3>
+                                <p class="text-arduino-blue-300 text-sm">We're just a small startup with big dreams and personal touch.</p>
+                            </div>
+                            <div class="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30 text-center hover:bg-arduino-blue-800/50 transition-all">
+                                <div class="w-12 h-12 bg-arduino-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-warehouse text-white"></i>
+                                </div>
+                                <h3 class="font-semibold mb-2">No Warehouse Costs</h3>
+                                <p class="text-arduino-blue-300 text-sm">No warehouse means lower overhead and better prices for you.</p>
+                            </div>
+                            <div class="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30 text-center hover:bg-arduino-blue-800/50 transition-all">
+                                <div class="w-12 h-12 bg-arduino-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-heart-broken text-white"></i>
+                                </div>
+                                <h3 class="font-semibold mb-2">Single Admin</h3>
+                                <p class="text-arduino-blue-300 text-sm">Admin has no girlfriend - even less money required! 😄</p>
+                            </div>
+                            <div class="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30 text-center hover:bg-arduino-blue-800/50 transition-all">
+                                <div class="w-12 h-12 bg-arduino-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-cocktail text-white"></i>
+                                </div>
+                                <h3 class="font-semibold mb-2">Friday Nights</h3>
+                                <p class="text-arduino-blue-300 text-sm">Admin only needs money for Friday night fun!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Showcase -->
+                    <div class="text-center">
+                        <h2 class="text-3xl font-bold mb-8">Amazing Arduino Projects</h2>
+                        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                            <!-- Smart home automation project -->
+                            <div class="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl overflow-hidden border border-arduino-blue-700/30 hover:scale-105 transition-transform">
+                                <img src="https://pixabay.com/get/g176757df3e7674ddeda0d82e1ac94e0b3635736531c2a752d442422f7e0492d77aeb836388aad0cf24cdc12d7a7a52756258af10304f1648f1002daff2e8937c_1280.jpg" alt="Smart home automation system with Arduino" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-semibold mb-2">Smart Home System</h3>
+                                    <p class="text-arduino-blue-300 text-sm">Control lights, fans, and appliances remotely</p>
+                                </div>
+                            </div>
+                            <!-- Robotic car project -->
+                            <div class="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl overflow-hidden border border-arduino-blue-700/30 hover:scale-105 transition-transform">
+                                <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="Arduino-based robotic car with sensors and motors" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-semibold mb-2">Robotic Car</h3>
+                                    <p class="text-arduino-blue-300 text-sm">Build an autonomous driving robot car</p>
+                                </div>
+                            </div>
+                            <!-- IoT weather station -->
+                            <div class="bg-arduino-blue-800/30 backdrop-blur-sm rounded-xl overflow-hidden border border-arduino-blue-700/30 hover:scale-105 transition-transform">
+                                <img src="https://images.unsplash.com/photo-1504711331083-9c895941bf81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600" alt="IoT weather monitoring station with digital display" class="w-full h-48 object-cover">
+                                <div class="p-4">
+                                    <h3 class="font-semibold mb-2">Weather Station</h3>
+                                    <p class="text-arduino-blue-300 text-sm">Monitor temperature, humidity, and more</p>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="showSlide(1)" class="mt-8 bg-gradient-to-r from-arduino-blue-500 to-arduino-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:from-arduino-blue-600 hover:to-arduino-blue-700 transition-all">
+                            Shop Components Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 1: Products -->
+        <div class="slide min-h-screen bg-arduino-blue-950 pt-20 pb-10" data-slide="1">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Arduino Components Store</h1>
+                    <p class="text-xl text-arduino-blue-200">Choose from our carefully curated selection of Arduino parts</p>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="productGrid">
+                    <!-- Products will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: About -->
+        <div class="slide min-h-screen bg-arduino-blue-950 pt-20 pb-10" data-slide="2">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">About Arduino & ArduinoMart</h1>
+                    <p class="text-xl text-arduino-blue-200 max-w-3xl mx-auto">
+                        Arduino is an open-source electronics platform that makes it easy to create interactive projects. 
+                        Our VIT-based startup is passionate about making Arduino accessible to everyone.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 mb-16">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-6">What is Arduino?</h2>
+                        <div class="space-y-4 text-arduino-blue-200">
+                            <p>Arduino is a microcontroller platform that allows you to build interactive electronic projects easily. It's perfect for beginners and professionals alike.</p>
+                            <p>With Arduino, you can:</p>
+                            <ul class="list-disc list-inside space-y-2 ml-4">
+                                <li>Control LEDs, motors, and sensors</li>
+                                <li>Build robots and automation systems</li>
+                                <li>Create IoT (Internet of Things) devices</li>
+                                <li>Learn programming and electronics</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-bold mb-6">Our Story</h2>
+                        <div class="space-y-4 text-arduino-blue-200">
+                            <p>ArduinoMart started as a passion project by VIT students who wanted to make Arduino components more accessible and affordable.</p>
+                            <p>We focus on:</p>
+                            <ul class="list-disc list-inside space-y-2 ml-4">
+                                <li>Beginner-friendly products and guides</li>
+                                <li>Affordable pricing without compromising quality</li>
+                                <li>Personal support for your projects</li>
+                                <li>Building a community of makers</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-3xl font-bold text-center mb-12">Components in Our Starter Kit</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="aboutComponents">
+                        <!-- Components will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Contact -->
+        <div class="slide min-h-screen bg-arduino-blue-950 pt-20 pb-10" data-slide="3">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Get in Touch</h1>
+                    <p class="text-xl text-arduino-blue-200">Have questions about our products or need help with your Arduino project?</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-arduino-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fab fa-whatsapp text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">WhatsApp</p>
+                                    <p class="text-arduino-blue-300">+91 98765 43210</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-arduino-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-envelope text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Email</p>
+                                    <p class="text-arduino-blue-300">support@arduinomart.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-arduino-blue-500 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold">Location</p>
+                                    <p class="text-arduino-blue-300">VIT Campus, Vellore</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-bold mb-6">Send us a Message</h2>
+                        <form class="space-y-6" onsubmit="submitContactForm(event)">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Name</label>
+                                <input type="text" required class="w-full bg-arduino-blue-800 border border-arduino-blue-700 rounded-lg px-4 py-3 text-white placeholder-arduino-blue-300 focus:outline-none focus:ring-2 focus:ring-arduino-blue-500 focus:border-transparent" placeholder="Your name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" required class="w-full bg-arduino-blue-800 border border-arduino-blue-700 rounded-lg px-4 py-3 text-white placeholder-arduino-blue-300 focus:outline-none focus:ring-2 focus:ring-arduino-blue-500 focus:border-transparent" placeholder="your@email.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Message</label>
+                                <textarea rows="4" required class="w-full bg-arduino-blue-800 border border-arduino-blue-700 rounded-lg px-4 py-3 text-white placeholder-arduino-blue-300 focus:outline-none focus:ring-2 focus:ring-arduino-blue-500 focus:border-transparent resize-none" placeholder="How can we help you?"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-arduino-blue-500 to-arduino-blue-600 text-white py-3 rounded-lg font-medium hover:from-arduino-blue-600 hover:to-arduino-blue-700 transition-all">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Admin Panel -->
+        <div class="slide min-h-screen bg-arduino-blue-950 pt-20 pb-10" data-slide="4">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div id="adminLogin" class="max-w-md mx-auto">
+                    <div class="bg-arduino-blue-800/50 backdrop-blur-sm rounded-xl p-8 border border-arduino-blue-700/30">
+                        <h1 class="text-3xl font-bold text-center mb-8">Admin Access</h1>
+                        <form onsubmit="adminLogin(event)">
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium mb-2">Password</label>
+                                <input type="password" id="adminPassword" class="w-full bg-arduino-blue-900 border border-arduino-blue-700 rounded-lg px-4 py-3 text-white placeholder-arduino-blue-300 focus:outline-none focus:ring-2 focus:ring-arduino-blue-500 focus:border-transparent" placeholder="Enter admin password">
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-arduino-blue-500 to-arduino-blue-600 text-white py-3 rounded-lg font-medium hover:from-arduino-blue-600 hover:to-arduino-blue-700 transition-all">
+                                Login
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="adminPanel" class="hidden">
+                    <div class="text-center mb-8">
+                        <h1 class="text-4xl font-bold mb-4">Admin Panel</h1>
+                        <p class="text-arduino-blue-200">Manage orders and track deliveries</p>
+                    </div>
+
+                    <div class="bg-arduino-blue-800/50 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-semibold">Orders Management</h2>
+                            <button onclick="adminLogout()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                                Logout
+                            </button>
+                        </div>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="border-b border-arduino-blue-700">
+                                        <th class="text-left py-3 px-4">Order ID</th>
+                                        <th class="text-left py-3 px-4">Customer</th>
+                                        <th class="text-left py-3 px-4">Items</th>
+                                        <th class="text-left py-3 px-4">Total</th>
+                                        <th class="text-left py-3 px-4">Status</th>
+                                        <th class="text-left py-3 px-4">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTable">
+                                    <!-- Orders will be populated by JavaScript -->
+                                    <tr>
+                                        <td colspan="6" class="text-center py-8 text-arduino-blue-300">No orders yet</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Checkout -->
+        <div class="slide min-h-screen bg-arduino-blue-950 pt-20 pb-10" data-slide="5">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold mb-4">Checkout</h1>
+                    <p class="text-arduino-blue-200">Complete your order by filling out the details below</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-6">Order Details</h2>
+                        <form onsubmit="submitOrder(event)" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Full Name *</label>
+                                <input type="text" name="fullName" required class="w-full bg-arduino-blue-800 border border-arduino-blue-700 rounded-lg px-4 py-3 text-white placeholder-arduino-blue-300 focus:outline-none focus:ring-2 focus:ring-arduino-blue-500 focus:border-transparent" placeholder="Your full name">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Address *</label>
+                                <textarea name="address" rows="3" required class="w-full bg-arduino-blue-800 border border-arduino-blue-700 rounded-lg px-4 py-3 text-white placeholder-arduino-blue-300 focus:outline-none focus:ring-2 focus:ring-arduino-blue-500 focus:border-transparent resize-none" placeholder="Your complete address"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Mobile Number *</label>
+                                <input type="tel" name="mobile" required class="w-full bg-arduino-blue-800 border border-arduino-blue-700 rounded-lg px-4 py-3 text-white placeholder-arduino-blue-300 focus:outline-none focus:ring-2 focus:ring-arduino-blue-500 focus:border-transparent" placeholder="+91 98765 43210">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Class/Branch *</label>
+                                <input type="text" name="classBranch" required class="w-full bg-arduino-blue-800 border border-arduino-blue-700 rounded-lg px-4 py-3 text-white placeholder-arduino-blue-300 focus:outline-none focus:ring-2 focus:ring-arduino-blue-500 focus:border-transparent" placeholder="e.g. ECE 3rd Year">
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 rounded-lg font-medium hover:from-green-600 hover:to-green-700 transition-all">
+                                Place Order
+                            </button>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h2 class="text-2xl font-semibold mb-6">Order Summary</h2>
+                        <div class="bg-arduino-blue-800/50 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30">
+                            <div id="orderSummary" class="space-y-4">
+                                <!-- Order items will be populated by JavaScript -->
+                                <p class="text-arduino-blue-300">Your cart is empty</p>
+                            </div>
+                            <hr class="border-arduino-blue-700 my-6">
+                            <div class="flex justify-between items-center text-xl font-semibold">
+                                <span>Total Amount:</span>
+                                <span>₹<span id="orderTotal">0</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-20 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center">
+            <i class="fas fa-check-circle mr-2"></i>
+            <span id="toastMessage">Item added to cart!</span>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentSlide = 0;
+        let cart = [];
+        let orders = [];
+        let isAdminLoggedIn = false;
+
+        // Product data
+        const products = [
+            {id: 'arduino-uno', name: 'SMD Arduino UNO R3 Board', price: 450, icon: 'fas fa-microchip'},
+            {id: 'ultrasonic-sensor', name: 'Ultrasonic Distance Sensor', price: 120, icon: 'fas fa-wave-square'},
+            {id: 'servo-motor', name: 'Servo Motor', price: 200, icon: 'fas fa-cog'},
+            {id: 'dc-motor', name: 'DC Motor', price: 150, icon: 'fas fa-fan'},
+            {id: 'relay', name: 'Relay', price: 80, icon: 'fas fa-toggle-on'},
+            {id: 'lcd-display', name: 'LCD1602 Display', price: 180, icon: 'fas fa-desktop'},
+            {id: '7-segment', name: '7-Segment Display 4X module', price: 160, icon: 'fas fa-calculator'},
+            {id: 'active-buzzer', name: 'Active Buzzer', price: 40, icon: 'fas fa-volume-up'},
+            {id: 'thermistor', name: '2x Analog Thermistor – Temp Sensor', price: 60, icon: 'fas fa-thermometer-half'},
+            {id: 'light-sensor', name: '2x Light Sensor (Photo-resistor)', price: 50, icon: 'fas fa-lightbulb'},
+            {id: 'tilt-switch', name: 'Tilt Switch', price: 35, icon: 'fas fa-compass'},
+            {id: 'button-switch', name: '2x Button Switch (Large)', price: 40, icon: 'fas fa-hand-pointer'},
+            {id: 'rgb-led', name: 'RGB LED', price: 25, icon: 'fas fa-circle'},
+            {id: 'red-led', name: '5x Red LED', price: 20, icon: 'fas fa-circle'},
+            {id: 'green-led', name: '5x Green LED', price: 20, icon: 'fas fa-circle'},
+            {id: 'yellow-led', name: '5x Yellow LED', price: 20, icon: 'fas fa-circle'},
+            {id: 'blue-led', name: '5x Blue LED', price: 20, icon: 'fas fa-circle'},
+            {id: 'resistor-220', name: '6x Resistor (220 Ω)', price: 15, icon: 'fas fa-minus'},
+            {id: 'resistor-10k', name: '6x Resistor (10 kΩ)', price: 15, icon: 'fas fa-minus'},
+            {id: 'i2c-module', name: 'I2C Module', price: 100, icon: 'fas fa-network-wired'},
+            {id: 'ir-sensor', name: 'IR Sensor Module / Bare Sensor', price: 90, icon: 'fas fa-eye'},
+            {id: 'transistor', name: '2x NPN Transistor (8050)', price: 30, icon: 'fas fa-microchip'},
+            {id: 'potentiometer', name: 'Potentiometer (10kΩ)', price: 45, icon: 'fas fa-sliders-h'},
+            {id: 'diode-4148', name: '2x 1N4148 Diode', price: 15, icon: 'fas fa-long-arrow-alt-right'},
+            {id: 'diode-4001', name: '2x 1N4001 Diode', price: 18, icon: 'fas fa-long-arrow-alt-right'},
+            {id: 'usb-cable', name: 'USB Cable', price: 80, icon: 'fas fa-usb'},
+            {id: 'breadboard', name: 'Breadboard', price: 120, icon: 'fas fa-th'},
+            {id: 'battery-holder', name: 'Battery Holder', price: 50, icon: 'fas fa-battery-half'},
+            {id: 'jumper-mm', name: '40x Male to Male Jumper Wires', price: 40, icon: 'fas fa-link'},
+            {id: 'jumper-mf', name: '20x Male to Female Jumper Wires', price: 35, icon: 'fas fa-link'},
+            {id: 'header-pins', name: 'Header (40 pin)', price: 25, icon: 'fas fa-grip-lines'},
+            {id: 'resistor-card', name: 'Band Resistor Card', price: 30, icon: 'fas fa-credit-card'},
+            {id: 'motor-driver', name: 'L293D Motor Driver IC', price: 85, icon: 'fas fa-microchip'},
+            {id: 'laser-diode', name: 'Laser Diode', price: 65, icon: 'fas fa-dot-circle'},
+            {id: 'piezo-sensor', name: 'Piezoelectric Sensor', price: 55, icon: 'fas fa-wave-square'},
+            {id: 'resistor-2k2', name: 'Resistor 2.2k ohm', price: 8, icon: 'fas fa-minus'},
+            {id: 'bluetooth-module', name: 'HC-05 Bluetooth Module', price: 350, icon: 'fab fa-bluetooth'},
+            {id: 'optocoupler', name: 'Opto-coupler', price: 40, icon: 'fas fa-eye'},
+            {id: 'inductor', name: 'Inductor', price: 20, icon: 'fas fa-coil'},
+            {id: 'capacitor-104', name: '2x Capacitor (104)', price: 12, icon: 'fas fa-battery-empty'},
+            {id: 'capacitor-10uf', name: '2x Capacitor (10uF)', price: 15, icon: 'fas fa-battery-empty'},
+            {id: 'project-box', name: 'Project Box', price: 75, icon: 'fas fa-box'}
+        ];
+
+        // Initialize the application
+        (function() {
+            populateProducts();
+            populateAboutComponents();
+            updateCartUI();
+            updateOrderSummary();
+        })();
+
+        function showSlide(slideIndex) {
+            currentSlide = slideIndex;
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach((slide, index) => {
+                if (index === slideIndex) {
+                    slide.style.transform = 'translateX(0)';
+                    slide.style.opacity = '1';
+                    slide.style.visibility = 'visible';
+                } else {
+                    slide.style.transform = 'translateX(100%)';
+                    slide.style.opacity = '0';
+                    slide.style.visibility = 'hidden';
+                }
+            });
+
+            // Update navigation active state
+            document.querySelectorAll('.nav-link').forEach((link, index) => {
+                if (index === slideIndex) {
+                    link.classList.add('text-white');
+                    link.classList.remove('text-arduino-blue-200');
+                } else {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-arduino-blue-200');
+                }
+            });
+        }
+
+        function populateProducts() {
+            const productGrid = document.getElementById('productGrid');
+            
+            // Add starter kit first
+            const starterKitHtml = `
+                <div class="bg-gradient-to-br from-arduino-blue-800 to-arduino-blue-700 rounded-xl p-6 border-2 border-arduino-blue-500 relative overflow-hidden transform hover:scale-105 transition-all shadow-xl">
+                    <div class="absolute top-2 right-2 bg-arduino-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">BUNDLE</div>
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-arduino-blue-400 to-arduino-blue-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-box-open text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Arduino Starter Kit</h3>
+                        <p class="text-sm text-arduino-blue-200 mb-3">Complete kit with all 42 components</p>
+                        <div class="flex items-center justify-center gap-2 mb-4">
+                            <span class="text-2xl font-bold text-arduino-blue-300">₹1,250</span>
+                            <span class="text-sm text-arduino-blue-400 line-through">₹2,000</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center bg-arduino-blue-600 rounded-lg">
+                            <button onclick="updateQuantity('arduino-starter-kit', -1)" class="px-3 py-2 text-white hover:bg-arduino-blue-700 rounded-l-lg transition-colors">-</button>
+                            <span id="qty-arduino-starter-kit" class="px-4 py-2 bg-arduino-blue-700 text-white min-w-12 text-center">1</span>
+                            <button onclick="updateQuantity('arduino-starter-kit', 1)" class="px-3 py-2 text-white hover:bg-arduino-blue-700 rounded-r-lg transition-colors">+</button>
+                        </div>
+                        <button onclick="addToCart('arduino-starter-kit', 'Arduino Starter Kit', 1250)" class="flex-1 bg-arduino-blue-500 text-white py-2 rounded-lg font-medium hover:bg-arduino-blue-600 transition-colors">
+                            <i class="fas fa-cart-plus mr-1"></i> Add
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            let productsHtml = starterKitHtml;
+
+            products.forEach(product => {
+                productsHtml += `
+                    <div class="bg-arduino-blue-800/50 backdrop-blur-sm rounded-xl p-6 border border-arduino-blue-700/30 hover:bg-arduino-blue-800/70 transition-all">
+                        <div class="text-center mb-4">
+                            <div class="w-12 h-12 bg-arduino-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                                <i class="${product.icon} text-white"></i>
+                            </div>
+                            <h3 class="font-semibold text-sm mb-2">${product.name}</h3>
+                            <p class="text-xl font-bold text-arduino-blue-300 mb-3">₹${product.price}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center bg-arduino-blue-600 rounded-lg text-sm">
+                                <button onclick="updateQuantity('${product.id}', -1)" class="px-2 py-1 text-white hover:bg-arduino-blue-700 rounded-l-lg transition-colors">-</button>
+                                <span id="qty-${product.id}" class="px-3 py-1 bg-arduino-blue-700 text-white min-w-8 text-center">1</span>
+                                <button onclick="updateQuantity('${product.id}', 1)" class="px-2 py-1 text-white hover:bg-arduino-blue-700 rounded-r-lg transition-colors">+</button>
+                            </div>
+                            <button onclick="addToCart('${product.id}', '${product.name}', ${product.price})" class="flex-1 bg-arduino-blue-500 text-white py-1.5 rounded-lg font-medium hover:bg-arduino-blue-600 transition-colors text-sm">
+                                <i class="fas fa-cart-plus mr-1"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            productGrid.innerHTML = productsHtml;
+        }
+
+        function populateAboutComponents() {
+            const aboutComponents = document.getElementById('aboutComponents');
+            let componentsHtml = '';
+
+            products.forEach(product => {
+                componentsHtml += `
+                    <div class="bg-arduino-blue-800/30 backdrop-blur-sm rounded-lg p-4 border border-arduino-blue-700/30 text-center">
+                        <div class="w-8 h-8 bg-arduino-blue-500 rounded-full flex items-center justify-center mx-auto mb-2">
+                            <i class="${product.icon} text-white text-xs"></i>
+                        </div>
+                        <h4 class="font-medium text-xs text-white mb-1">${product.name}</h4>
+                        <p class="text-xs text-arduino-blue-300">₹${product.price}</p>
+                    </div>
+                `;
+            });
+
+            aboutComponents.innerHTML = componentsHtml;
+        }
+
+        function updateQuantity(productId, change) {
+            const qtyElement = document.getElementById(`qty-${productId}`);
+            let currentQty = parseInt(qtyElement.textContent);
+            currentQty = Math.max(1, currentQty + change);
+            qtyElement.textContent = currentQty;
+        }
+
+        function addToCart(productId, productName, price) {
+            const qtyElement = document.getElementById(`qty-${productId}`);
+            const quantity = parseInt(qtyElement.textContent);
+
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: price,
+                    quantity: quantity
+                });
+            }
+
+            updateCartUI();
+            updateOrderSummary();
+            showToast(`Added ${quantity}x ${productName} to cart!`);
+
+            // Reset quantity to 1
+            qtyElement.textContent = '1';
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            updateOrderSummary();
+        }
+
+        function updateCartQuantity(productId, newQuantity) {
+            const item = cart.find(item => item.id === productId);
+            if (item && newQuantity > 0) {
+                item.quantity = newQuantity;
+                updateCartUI();
+                updateOrderSummary();
+            }
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartCount.textContent = totalItems;
+            cartTotal.textContent = totalPrice;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-arduino-blue-300 text-center">Your cart is empty</p>';
+            } else {
+                let cartHtml = '';
+                cart.forEach(item => {
+                    cartHtml += `
+                        <div class="flex items-center gap-3 py-3 border-b border-arduino-blue-800 last:border-b-0">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-sm">${item.name}</h4>
+                                <p class="text-arduino-blue-300 text-sm">₹${item.price} each</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="flex items-center bg-arduino-blue-800 rounded">
+                                    <button onclick="updateCartQuantity('${item.id}', ${item.quantity - 1})" class="px-2 py-1 text-arduino-blue-300 hover:text-white text-sm">-</button>
+                                    <span class="px-2 py-1 text-white text-sm">${item.quantity}</span>
+                                    <button onclick="updateCartQuantity('${item.id}', ${item.quantity + 1})" class="px-2 py-1 text-arduino-blue-300 hover:text-white text-sm">+</button>
+                                </div>
+                                <button onclick="removeFromCart('${item.id}')" class="text-red-400 hover:text-red-300">
+                                    <i class="fas fa-trash text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                cartItems.innerHTML = cartHtml;
+            }
+        }
+
+        function updateOrderSummary() {
+            const orderSummary = document.getElementById('orderSummary');
+            const orderTotal = document.getElementById('orderTotal');
+
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            orderTotal.textContent = totalPrice;
+
+            if (cart.length === 0) {
+                orderSummary.innerHTML = '<p class="text-arduino-blue-300">Your cart is empty</p>';
+            } else {
+                let summaryHtml = '';
+                cart.forEach(item => {
+                    summaryHtml += `
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm">${item.name} x${item.quantity}</span>
+                            <span class="font-medium">₹${item.price * item.quantity}</span>
+                        </div>
+                    `;
+                });
+                orderSummary.innerHTML = summaryHtml;
+            }
+        }
+
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            cartSidebar.classList.toggle('translate-x-full');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.textContent = message;
+            toast.classList.remove('translate-x-full');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+            }, 3000);
+        }
+
+        function submitOrder(event) {
+            event.preventDefault();
+            
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            const formData = new FormData(event.target);
+            const order = {
+                id: 'ORDER-' + Date.now(),
+                fullName: formData.get('fullName'),
+                address: formData.get('address'),
+                mobile: formData.get('mobile'),
+                classBranch: formData.get('classBranch'),
+                items: [...cart],
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                status: 'pending',
+                timestamp: new Date().toISOString()
+            };
+
+            // TODO: Save order to Replit Database
+            orders.push(order);
+            
+            // Clear cart
+            cart = [];
+            updateCartUI();
+            updateOrderSummary();
+            
+            alert('Order placed successfully! Order ID: ' + order.id);
+            showSlide(0); // Go back to homepage
+        }
+
+        function submitContactForm(event) {
+            event.preventDefault();
+            // TODO: Process contact form submission
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        function adminLogin(event) {
+            event.preventDefault();
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password === 'soham11') {
+                isAdminLoggedIn = true;
+                document.getElementById('adminLogin').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                loadOrders();
+            } else {
+                alert('Invalid password!');
+            }
+        }
+
+        function adminLogout() {
+            isAdminLoggedIn = false;
+            document.getElementById('adminLogin').classList.remove('hidden');
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('adminPassword').value = '';
+        }
+
+        function loadOrders() {
+            const ordersTable = document.getElementById('ordersTable');
+            
+            if (orders.length === 0) {
+                ordersTable.innerHTML = '<tr><td colspan="6" class="text-center py-8 text-arduino-blue-300">No orders yet</td></tr>';
+                return;
+            }
+
+            let ordersHtml = '';
+            orders.forEach(order => {
+                const itemsText = order.items.map(item => `${item.name} (${item.quantity})`).join(', ');
+                ordersHtml += `
+                    <tr class="border-b border-arduino-blue-800">
+                        <td class="py-3 px-4 font-mono text-sm">${order.id}</td>
+                        <td class="py-3 px-4">
+                            <div class="font-medium">${order.fullName}</div>
+                            <div class="text-sm text-arduino-blue-300">${order.mobile}</div>
+                        </td>
+                        <td class="py-3 px-4 text-sm max-w-xs truncate" title="${itemsText}">${itemsText}</td>
+                        <td class="py-3 px-4 font-semibold">₹${order.total}</td>
+                        <td class="py-3 px-4">
+                            <span class="px-2 py-1 rounded-full text-xs ${order.status === 'completed' ? 'bg-green-600' : 'bg-yellow-600'} text-white">
+                                ${order.status}
+                            </span>
+                        </td>
+                        <td class="py-3 px-4">
+                            <div class="flex items-center gap-2">
+                                <input type="checkbox" ${order.status === 'completed' ? 'checked' : ''} 
+                                       onchange="toggleOrderStatus('${order.id}')" 
+                                       class="rounded bg-arduino-blue-700 border-arduino-blue-600 text-arduino-blue-500">
+                                ${order.status === 'completed' ? `
+                                    <button onclick="deleteOrder('${order.id}')" class="text-red-400 hover:text-red-300">
+                                        <i class="fas fa-trash text-sm"></i>
+                                    </button>
+                                ` : ''}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            ordersTable.innerHTML = ordersHtml;
+        }
+
+        function toggleOrderStatus(orderId) {
+            const order = orders.find(o => o.id === orderId);
+            if (order) {
+                order.status = order.status === 'completed' ? 'pending' : 'completed';
+                loadOrders();
+            }
+        }
+
+        function deleteOrder(orderId) {
+            if (confirm('Are you sure you want to delete this order?')) {
+                orders = orders.filter(o => o.id !== orderId);
+                loadOrders();
+            }
+        }
+
+        // Initialize slides position
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(0);
+        });
+    </script>
+</body>
+</html>
