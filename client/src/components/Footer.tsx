@@ -5,11 +5,11 @@ interface FooterProps {
 
 export default function Footer({ setCurrentSlide, isHomePage = false }: FooterProps) {
   return (
-    <footer className="bg-arduino-blue-950 border-t border-arduino-blue-800/30 mt-auto mb-0">
+    <footer className="bg-arduino-blue-950 border-t border-arduino-blue-800/30 mt-auto mb-0 relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 lg:gap-12 pl-4">
           {/* Company Info */}
-          <div className="md:col-span-1">
+          <div className="md:col-span-2 lg:pr-12">
             <h3 className="text-lg font-semibold mb-4">ArduinoMart</h3>
             <p className="text-sm text-arduino-blue-400 leading-relaxed">
               Building the future, one project at a time.

@@ -87,12 +87,14 @@ export default function ArduinoMart() {
                 ) : (
                   <SlideComponent setCurrentSlide={handleSlideChange} />
                 )}
+                {index === currentSlide && (
+                  <Footer setCurrentSlide={handleSlideChange} isHomePage={currentSlide === 0} />
+                )}
               </div>
             );
           })}
         </div>
       </main>
-      <Footer setCurrentSlide={handleSlideChange} isHomePage={currentSlide === 0} />
     </div>
   );
 }

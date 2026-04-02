@@ -253,3 +253,10 @@ footer a:focus {
   margin-bottom: 0;
   padding-bottom: 0;
 }
+
+/* Ensure footer is always visible on all pages */
+footer {
+  position: relative;
+  z-index: 20;
+  flex-shrink: 0;
+}
