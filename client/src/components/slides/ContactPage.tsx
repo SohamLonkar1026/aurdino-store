@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,29 +18,21 @@ export default function ContactPage({ setCurrentSlide }: ContactPageProps) {
   
   const { toast } = useToast();
 
-  const contactMutation = useMutation({
-    mutationFn: async (data: typeof formData) => {
-      return await apiRequest("POST", "/api/contacts", data);
-    },
-    onSuccess: () => {
+  const [isPending, setIsPending] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsPending(true);
+    
+    // Simulate network request
+    setTimeout(() => {
+      setIsPending(false);
       toast({
         title: "Message sent!",
         description: "Thank you for your message! We will get back to you soon.",
       });
       setFormData({ name: "", email: "", message: "" });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to send message. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    contactMutation.mutate(formData);
+    }, 1500);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -136,10 +126,10 @@ export default function ContactPage({ setCurrentSlide }: ContactPageProps) {
               </div>
               <Button
                 type="submit"
-                disabled={contactMutation.isPending}
+                disabled={isPending}
                 className="w-full bg-gradient-to-r from-arduino-blue-500 to-arduino-blue-600 hover:from-arduino-blue-600 hover:to-arduino-blue-700"
               >
-                {contactMutation.isPending ? "Sending..." : "Send Message"}
+                {isPending ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>

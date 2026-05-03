@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { Order, Contact } from "@shared/schema";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,80 +15,30 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [password, setPassword] = useState("");
   const { toast } = useToast();
-  const queryClient = useQueryClient();
-
-  const { data: orders = [], isLoading: ordersLoading } = useQuery<Order[]>({
-    queryKey: ["/api/orders"],
-    enabled: isLoggedIn,
-  });
-
-  const { data: contacts = [], isLoading: contactsLoading } = useQuery<Contact[]>({
-    queryKey: ["/api/contacts"],
-    enabled: isLoggedIn,
-  });
+  const orders: Order[] = [];
+  const contacts: Contact[] = [];
+  const ordersLoading = false;
+  const contactsLoading = false;
 
   useEffect(() => {
-    if (!isLoggedIn) return;
+    // No backend, so no websocket
+  }, [isLoggedIn, toast]);
 
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    const wsUrl = `${protocol}//${window.location.host}/ws`;
-    const ws = new WebSocket(wsUrl);
+  const handleStatusToggle = (order: Order) => {
+    toast({
+      title: "Status updated",
+      description: "Order status has been updated successfully (Mock).",
+    });
+  };
 
-    ws.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      if (message.type === "new_order") {
-        toast({
-          title: "New Order Received!",
-          description: `Order #${message.order.orderId} from ${message.order.fullName}`,
-        });
-        queryClient.invalidateQueries({ queryKey: ["/api/orders"] });
-      }
-    };
-
-    return () => {
-      ws.close();
-    };
-  }, [isLoggedIn, queryClient, toast]);
-
-  const updateStatusMutation = useMutation({
-    mutationFn: async ({ orderId, status }: { orderId: string; status: string }) => {
-      return await apiRequest("PATCH", `/api/orders/${orderId}/status`, { status });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/orders"] });
-      toast({
-        title: "Status updated",
-        description: "Order status has been updated successfully.",
-      });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to update order status.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const deleteOrderMutation = useMutation({
-    mutationFn: async (orderId: string) => {
-      return await apiRequest("DELETE", `/api/orders/${orderId}`);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["/api/orders"] });
+  const handleDeleteOrder = (orderId: string) => {
+    if (confirm("Are you sure you want to delete this order?")) {
       toast({
         title: "Order deleted",
-        description: "Order has been deleted successfully.",
+        description: "Order has been deleted successfully (Mock).",
       });
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to delete order. Make sure it's marked as completed.",
-        variant: "destructive",
-      });
-    },
-  });
+    }
+  };
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,16 +62,7 @@ export default function AdminPage({ setCurrentSlide }: AdminPageProps) {
     setPassword("");
   };
 
-  const handleStatusToggle = (order: Order) => {
-    const newStatus = order.status === "completed" ? "pending" : "completed";
-    updateStatusMutation.mutate({ orderId: order.orderId, status: newStatus });
-  };
 
-  const handleDeleteOrder = (orderId: string) => {
-    if (confirm("Are you sure you want to delete this order?")) {
-      deleteOrderMutation.mutate(orderId);
-    }
-  };
 
   if (!isLoggedIn) {
     return (

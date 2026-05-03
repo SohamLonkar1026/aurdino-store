@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
@@ -22,28 +20,9 @@ export default function CheckoutPage({ setCurrentSlide }: CheckoutPageProps) {
   });
   const [mobileError, setMobileError] = useState("");
 
-  const orderMutation = useMutation({
-    mutationFn: async (orderData: any) => {
-      return await apiRequest("POST", "/api/orders", orderData);
-    },
-    onSuccess: (response) => {
-      clearCart();
-      toast({
-        title: "Order placed successfully!",
-        description: "Your order has been placed successfully!",
-      });
-      setCurrentSlide(0); // Go back to home
-    },
-    onError: () => {
-      toast({
-        title: "Error",
-        description: "Failed to place order. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
+  const [isPending, setIsPending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (state.items.length === 0) {
@@ -66,16 +45,20 @@ export default function CheckoutPage({ setCurrentSlide }: CheckoutPageProps) {
       return;
     }
 
-    const orderData = {
-      orderId: `ORDER-${Date.now()}`,
-      ...formData,
-      address: "College Campus Delivery", // Default address for college delivery
-      items: JSON.stringify(state.items.map(item => item.name)), // Store only product names
-      total: state.total,
-    };
-
-    orderMutation.mutate(orderData);
+    setIsPending(true);
+    
+    // Simulate network request
+    setTimeout(() => {
+      setIsPending(false);
+      clearCart();
+      toast({
+        title: "Order placed successfully!",
+        description: "Your order has been placed successfully!",
+      });
+      setCurrentSlide(0); // Go back to home
+    }, 1500);
   };
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -184,10 +167,10 @@ export default function CheckoutPage({ setCurrentSlide }: CheckoutPageProps) {
               </div>
               <Button
                 type="submit"
-                disabled={orderMutation.isPending || state.items.length === 0}
+                disabled={isPending || state.items.length === 0}
                 className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700"
               >
-                {orderMutation.isPending ? "Placing Order..." : "Place Order"}
+                {isPending ? "Placing Order..." : "Place Order"}
               </Button>
             </form>
           </div>
